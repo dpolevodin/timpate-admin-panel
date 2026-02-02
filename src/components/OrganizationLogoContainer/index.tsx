@@ -29,7 +29,7 @@ export const OrganizationLogoContainer: FC = () => {
         Paste your link to generate and download the QR code as png
       </div>
       <div className={style.download} onClick={openFileDialog}>
-        Download JPG
+        Upload JPG
       </div>
       <input
         ref={inputRef}
