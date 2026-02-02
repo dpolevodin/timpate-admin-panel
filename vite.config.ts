@@ -4,6 +4,7 @@ import svgr from "vite-plugin-svgr";
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: "/timpate-admin-panel/",
   plugins: [
     react(),
     svgr({
