@@ -26,7 +26,7 @@ export const OrganizationLogoContainer: FC = () => {
   return (
     <div className={style.container}>
       <div className={style.text}>
-        Paste your link to generate and download the QR code as png
+        Upload an image to see how it will look on the homepage
       </div>
       <div className={style.download} onClick={openFileDialog}>
         Upload JPG
