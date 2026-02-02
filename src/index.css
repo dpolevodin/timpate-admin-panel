@@ -1,0 +1,15 @@
+:root {
+  --background-main:#363437;
+  --text-color-main: #FFFFFF;
+  --text-default: #D9D9D9;
+  --color-brand: #49CDFE
+}
+
+body {
+  background: var(--background-main);
+  color: var(--text-color-main);
+}
+
+* {
+  box-sizing: border-box;
+}
