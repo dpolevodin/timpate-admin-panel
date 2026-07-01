@@ -76,60 +76,64 @@ export const GenerateHltnQr: FC = () => {
             Download QR <DownloadIcon />
           </div>
 
-          <div className={style.qrWrapper}>
-            <div className={style.hltnWrapper} ref={qrForDownloadRef}>
-              <img src={logo} alt="logo" className={style.hltnLogo} />
-              <div className={style.divider} />
-              <div className={style.titleBlock}>
-                <span className={style.title}>
-                  Gracias por
-                  <br /> alegrarle el día a alguien
-                </span>
-                <span className={style.title}>
-                  Thank you for
-                  <br /> making someone’s day
-                </span>
-              </div>
-              <div className={style.descriptionBlock}>
-                <span className={style.description}>
-                  Alguien hizo tu estancia especial?
-                  <br /> Deja una propina escaneando el
-                  <br /> código QR
-                </span>
-                <span className={style.description}>
-                  Did someone make your stay
-                  <br /> special? Leave a tip by
-                  <br /> scanning the QR code
-                </span>
-              </div>
-              <div className={style.qrCodeOuterWrapper}>
-                <div className={style.roomNumber}>{room}</div>
-                <QRCodeSVG
-                  value={value}
-                  size={550}
-                  imageSettings={{
-                    src: svgToDataUrl(CoinInlineSvg),
-                    width: 80,
-                    height: 80,
-                    excavate: true,
-                  }}
-                />
-              </div>
+          {/*<div className={style.qrWrapper}>*/}
+          <div
+            className={style.hltnWrapper}
+            ref={qrForDownloadRef}
+            id="hilton-qr-card"
+          >
+            <img src={logo} alt="logo" className={style.hltnLogo} />
+            <div className={style.divider} />
+            <div className={style.titleBlock}>
+              <span className={style.title}>
+                Gracias por
+                <br /> alegrarle el día a alguien
+              </span>
+              <span className={style.title}>
+                Thank you for
+                <br /> making someone’s day
+              </span>
+            </div>
+            <div className={style.descriptionBlock}>
+              <span className={style.description}>
+                Alguien hizo tu estancia especial?
+                <br /> Deja una propina escaneando el
+                <br /> código QR
+              </span>
+              <span className={style.description}>
+                Did someone make your stay
+                <br /> special? Leave a tip by
+                <br /> scanning the QR code
+              </span>
+            </div>
+            <div className={style.qrCodeOuterWrapper}>
+              <div className={style.roomNumber}>{room}</div>
+              <QRCodeSVG
+                value={value}
+                size={550}
+                imageSettings={{
+                  src: svgToDataUrl(CoinInlineSvg),
+                  width: 80,
+                  height: 80,
+                  excavate: true,
+                }}
+              />
+            </div>
 
-              <div className={style.subDescriptionWrapper}>
-                <span className={style.subDescription}>
-                  LAS PROPINAS SON OPCIONALES Y<br /> MUY AGRADECIDAS
-                </span>
-                <span className={style.subDescription}>
-                  GRATUITIES ARE OPTIONAL AND
-                  <br /> GREATLY APPRECIATED
-                </span>
-              </div>
-              <div className={style.footer}>
-                <div className={style.footerText}>tipmate.me</div>
-              </div>
+            <div className={style.subDescriptionWrapper}>
+              <span className={style.subDescription}>
+                LAS PROPINAS SON OPCIONALES Y<br /> MUY AGRADECIDAS
+              </span>
+              <span className={style.subDescription}>
+                GRATUITIES ARE OPTIONAL AND
+                <br /> GREATLY APPRECIATED
+              </span>
+            </div>
+            <div className={style.footer}>
+              <div className={style.footerText}>tipmate.me</div>
             </div>
           </div>
+          {/*</div>*/}
         </div>
       )}
     </div>

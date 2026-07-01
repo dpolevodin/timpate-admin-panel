@@ -1,73 +1,95 @@
-# React + TypeScript + Vite
+Deployed: https://dpolevodin.github.io/timpate-admin-panel/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## QR Code Batch Generation
 
-Currently, two official plugins are available:
+Для массовой генерации QR-кодов используется скрипт:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+node scripts/generate-all.cjs room_numbers.txt
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Предварительная настройка
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. Установите зависимости проекта:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+2. Установите Playwright и Chromium (только один раз):
+
+```bash
+npm install -D playwright
+npx playwright install chromium
+```
+
+3. Запустите приложение локально:
+
+```bash
+npm run dev
+```
+
+По умолчанию скрипт ожидает, что приложение доступно по адресу:
+
+```
+http://localhost:5173
+```
+
+### Подготовка файла с номерами комнат
+
+Создайте текстовый файл, например `room_numbers.txt`.
+
+Каждый номер комнаты должен находиться на отдельной строке:
+
+```text
+1101
+1102
+1103
+1104
+1201
+1202
+```
+
+### Запуск генерации
+
+Из корня проекта выполните:
+
+```bash
+node scripts/generate-all.cjs room_numbers.txt
+```
+
+### Результат
+
+После завершения работы скрипта будет создан каталог:
+
+```
+output/
+```
+
+В нем появятся PNG-файлы для каждой комнаты:
+
+```
+output/
+├── tipmate_qr_hilton_room_1101.png
+├── tipmate_qr_hilton_room_1102.png
+├── tipmate_qr_hilton_room_1103.png
+└── ...
+```
+
+Каждый QR-код содержит ссылку вида:
+
+```
+https://pay.tipmate.me/team/10?room=<ROOM_NUMBER>
+```
+
+Например:
+
+```
+https://pay.tipmate.me/team/10?room=1101
+```
+
+### Примечания
+
+- Скрипт автоматически читает все номера комнат из указанного TXT-файла.
+- Для каждой комнаты открывается страница генератора QR, после чего изображение сохраняется в папку `output`.
+- Перед повторной генерацией рекомендуется очистить папку `output`, чтобы избежать смешивания старых и новых файлов.
