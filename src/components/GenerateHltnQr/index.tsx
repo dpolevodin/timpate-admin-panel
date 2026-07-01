@@ -83,23 +83,23 @@ export const GenerateHltnQr: FC = () => {
               <div className={style.titleBlock}>
                 <span className={style.title}>
                   Gracias por
-                  <br /> alegrarle el día a alguien.
+                  <br /> alegrarle el día a alguien
                 </span>
                 <span className={style.title}>
                   Thank you for
-                  <br /> making someone’s day.
+                  <br /> making someone’s day
                 </span>
               </div>
               <div className={style.descriptionBlock}>
                 <span className={style.description}>
                   Alguien hizo tu estancia especial?
                   <br /> Deja una propina escaneando el
-                  <br /> código QR.
+                  <br /> código QR
                 </span>
                 <span className={style.description}>
                   Did someone make your stay
                   <br /> special? Leave a tip by
-                  <br /> scanning the QR code.
+                  <br /> scanning the QR code
                 </span>
               </div>
               <div className={style.qrCodeOuterWrapper}>
