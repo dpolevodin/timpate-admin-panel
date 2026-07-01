@@ -11,7 +11,15 @@ if (!INPUT_FILE) {
 }
 
 const OUTPUT_DIR = path.join(process.cwd(), "output");
-fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+
+fs.rmSync(OUTPUT_DIR, {
+  recursive: true,
+  force: true,
+});
+
+fs.mkdirSync(OUTPUT_DIR, {
+  recursive: true,
+});
 
 const rooms = fs
   .readFileSync(INPUT_FILE, "utf8")
